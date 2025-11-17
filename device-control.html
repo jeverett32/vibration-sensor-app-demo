@@ -26,7 +26,9 @@
   <div class="container">
     <div class="card">
       <div class="card-title">Device Information</div>
-      <div id="device-info"></div>
+      <div id="device-info">
+        <div><strong>Last Synced:</strong> <span id="last-synced">Never</span></div>
+      </div>
     </div>
     <div id="anomaly-summary" class="card" style="display: none;">
       <div class="card-title">Anomaly Summary</div>
@@ -36,7 +38,7 @@
     </div>
     <div class="card">
         <div style="display: flex; align-items: center; justify-content: space-between;">
-            <button id="upload-btn" class="btn">Upload Data</button>
+            <button id="upload-btn" class="btn">Sync</button>
             <div id="device-status"></div>
         </div>
     </div>
@@ -48,6 +50,7 @@
     const anomalySummary = document.getElementById('anomaly-summary');
     const deviceStatus = document.getElementById('device-status');
     const uploadBtn = document.getElementById('upload-btn');
+    const lastSynced = document.getElementById('last-synced');
 
     // Simulate being in range of some devices
     const inRangeDevices = ['debarker', 'chipper'];
@@ -65,6 +68,7 @@
         <div><strong>Device ID:</strong> DBI-002-VIB</div>
         <div><strong>Status:</strong> <span class="status-problem">Maintenance Recommended</span></div>
         <div><strong>Battery:</strong> <span class="status-problem">Replace</span></div>
+        <div><strong>Last Synced:</strong> <span id="last-synced">2025-11-16 14:30</span></div>
       `;
       anomalySummary.style.display = 'block';
     } else if (device === 'chipper') {
@@ -72,6 +76,7 @@
         <div><strong>Device ID:</strong> CHP-003-VIB</div>
         <div><strong>Status:</strong> <span class="status-good">Good</span></div>
         <div><strong>Battery:</strong> <span class="status-good">Good</span></div>
+        <div><strong>Last Synced:</strong> <span id="last-synced">2025-11-17 10:00</span></div>
       `;
     }
     else {
@@ -79,12 +84,13 @@
         <div><strong>Device ID:</strong> HRS-001-VIB</div>
         <div><strong>Status:</strong> <span class="status-good">Good</span></div>
         <div><strong>Battery:</strong> <span class="status-good">Good</span></div>
+        <div><strong>Last Synced:</strong> <span id="last-synced">2025-11-17 11:45</span></div>
       `;
     }
 
     uploadBtn.addEventListener('click', function() {
         uploadBtn.disabled = true;
-        uploadBtn.textContent = 'Uploading...';
+        uploadBtn.textContent = 'Syncing...';
         let width = 0;
         const interval = setInterval(function() {
             width += 10;
@@ -92,10 +98,11 @@
             if (width >= 100) {
                 clearInterval(interval);
                 setTimeout(function() {
-                    uploadBtn.textContent = 'Success';
+                    uploadBtn.textContent = 'Synced';
                     uploadBtn.style.background = '#4CAF50';
+                    lastSynced.textContent = new Date().toLocaleString();
                     setTimeout(function() {
-                        uploadBtn.textContent = 'Upload Data';
+                        uploadBtn.textContent = 'Sync';
                         uploadBtn.style.background = '#1976d2';
                         uploadBtn.disabled = false;
                     }, 2000);
