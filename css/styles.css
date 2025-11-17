@@ -1,0 +1,70 @@
+body {
+    background-color: #eee;
+}
+
+#login-panel, #register-panel {
+    margin-top: 10vh;
+    padding: 2em;
+}
+
+@media (max-width: 600px) {
+    #login-panel, #register-panel {
+        margin-top: 2vh;
+    }
+}
+
+.full-width {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.fab {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.device-card-link, .list-item-link {
+    text-decoration: none;
+}
+
+.device-card-link .mui-panel:hover, .list-item-link .mui-panel:hover {
+    background-color: #f5f5f5;
+}
+
+.back-arrow {
+    color: white;
+    vertical-align: middle;
+    margin-right: 16px;
+    text-decoration: none;
+}
+
+.scanner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid white;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.list-item-link .mui-panel {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.status-connected {
+    color: green;
+    font-weight: bold;
+}

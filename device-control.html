@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
+  <script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet" type="text/css" />
+  <title>Device Control - Vibration Sensor App</title>
+</head>
+<body>
+  <script>
+    if (localStorage.getItem('loggedIn') !== 'true') {
+      window.location.href = 'index.html';
+    }
+  </script>
+  <header class="mui-appbar">
+    <div class="mui-container">
+      <table width="100%">
+        <tr class="mui--appbar-height">
+          <td class="mui--text-title">
+            <a href="dashboard.html" class="back-arrow"><i class="material-icons">arrow_back</i></a>
+            Device Control
+          </td>
+        </tr>
+      </table>
+    </div>
+  </header>
+  <div class="mui-container" style="margin-top: 2em;">
+    <div class="mui-panel">
+      <div class="mui--text-headline">Device Information</div>
+      <div><strong>Device ID:</strong> HRS-001-VIB</div>
+      <div><strong>Status:</strong> <span class="status-connected">Connected</span></div>
+    </div>
+    <div class="mui-panel">
+      <div class="mui--text-headline">Live Sensor Data</div>
+      <pre><code>{"x": 0.5, "y": -0.2, "z": 9.8}</code></pre>
+    </div>
+    <div class="mui-row" style="margin-top: 1em;">
+        <div class="mui-col-xs-6" style="padding-right: 8px;">
+            <button class="mui-btn mui-btn--raised mui-btn--primary full-width">Sync Time</button>
+        </div>
+        <div class="mui-col-xs-6" style="padding-left: 8px;">
+            <button class="mui-btn mui-btn--raised mui-btn--primary full-width">Upload Data</button>
+        </div>
+    </div>
+  </div>
+</body>
+</html>
