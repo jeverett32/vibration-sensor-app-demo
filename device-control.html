@@ -11,6 +11,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon-180x180.png">
   <link rel="apple-touch-icon" sizes="167x167" href="images/apple-touch-icon-167x167.png">
   <link href="css/new-styles.css" rel="stylesheet" type="text/css" />
+  <link href="css/theme.css" rel="stylesheet" type="text/css" />
   <title>Device Control - Vibration Sensor App</title>
 </head>
 <body>
@@ -22,6 +23,16 @@
   <header class="app-header">
     <a href="dashboard.html" class="back-arrow"><i class="material-icons">arrow_back</i></a>
     <div class="title">Device Control</div>
+    <div class="menu-container">
+      <div class="menu-button">
+        <i class="material-icons">menu</i>
+      </div>
+      <div class="dropdown-menu">
+        <a href="user-profile.html">User Profile</a>
+        <a href="device-discovery.html">Add Device</a>
+        <a href="#" id="logout-btn">Logout</a>
+      </div>
+    </div>
   </header>
   <div class="container">
     <div class="card">
@@ -87,6 +98,43 @@
         <div><strong>Last Synced:</strong> <span id="last-synced">2025-11-17 11:45</span></div>
       `;
     }
+
+    const menuButton = document.querySelector('.menu-button');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    const menuIcon = menuButton.querySelector('.material-icons');
+
+    menuButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const isOpened = dropdownMenu.style.display === 'block';
+      dropdownMenu.style.display = isOpened ? 'none' : 'block';
+      menuButton.classList.toggle('open', !isOpened);
+      menuIcon.textContent = isOpened ? 'menu' : 'expand_more';
+    });
+
+    // Close the dropdown if the user clicks outside of it
+    window.addEventListener('click', function(event) {
+      if (dropdownMenu.style.display === 'block') {
+        dropdownMenu.style.display = 'none';
+        menuButton.classList.remove('open');
+        menuIcon.textContent = 'menu';
+      }
+    });
+
+    const currentTheme = localStorage.getItem('theme');
+
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    }
+
+    if (currentTheme) {
+      setTheme(currentTheme);
+    }
+
+    document.getElementById('logout-btn').addEventListener('click', function() {
+      localStorage.removeItem('loggedIn');
+      window.location.href = 'index.html';
+    });
 
     uploadBtn.addEventListener('click', function() {
         uploadBtn.disabled = true;
