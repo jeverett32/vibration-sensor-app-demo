@@ -38,7 +38,9 @@ body {
 }
 
 [data-theme="dark"] input:disabled {
-    color: rgba(255, 255, 255, 0.5);
+    background-color: #424242;
+    color: #bdbdbd;
+    opacity: 1; /* Ensure the text is not faded */
 }
 
 [data-theme="dark"] .back-arrow {
