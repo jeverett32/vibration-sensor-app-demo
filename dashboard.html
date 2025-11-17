@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
-  <script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="css/new-styles.css" rel="stylesheet" type="text/css" />
   <title>Dashboard - Vibration Sensor App</title>
 </head>
 <body>
@@ -16,45 +15,75 @@
       window.location.href = 'index.html';
     }
   </script>
-  <header class="mui-appbar">
-    <div class="mui-container">
-      <table width="100%">
-        <tr class="mui--appbar-height">
-          <td class="mui--text-title">Dashboard</td>
-          <td align="right">
-            <button id="logout-btn" class="mui-btn mui-btn--flat">Logout</button>
-          </td>
-        </tr>
-      </table>
-    </div>
+  <header class="app-header">
+    <div class="title">Dashboard</div>
+    <button id="logout-btn" class="btn btn-flat">Logout</button>
   </header>
-  <div class="mui-container" style="margin-top: 2em;">
-    <div class="mui-row">
-      <div class="mui-col-xs-12 mui-col-md-4">
-        <a href="device-control.html" class="device-card-link">
-          <div class="mui-panel">
-            <div class="mui--text-headline">Head Rig Saw</div>
-            <div class="mui--text-dark-secondary">HRS-001-VIB</div>
-          </div>
-        </a>
-      </div>
-      <div class="mui-col-xs-12 mui-col-md-4">
-        <a href="device-control.html" class="device-card-link">
-          <div class="mui-panel">
-            <div class="mui--text-headline">Debarker Intake</div>
-            <div class="mui--text-dark-secondary">DBI-002-VIB</div>
-          </div>
-        </a>
-      </div>
+  <div class="container">
+    <div class="device-grid">
+      <a href="device-control.html" class="device-card">
+        <div class="card">
+          <div class="card-title"><span class="status-circle status-circle-good"></span>Head Rig Saw</div>
+          <div>HRS-001-VIB</div>
+        </div>
+      </a>
+      <a href="device-control.html?device=debarker" class="device-card">
+        <div class="card">
+          <div class="card-title"><span class="status-circle status-circle-problem"></span>Debarker Intake</div>
+          <div>DBI-002-VIB</div>
+        </div>
+      </a>
+      <a href="device-control.html?device=chipper" class="device-card">
+        <div class="card">
+          <div class="card-title"><span class="status-circle status-circle-good"></span>Chipper</div>
+          <div>CHP-003-VIB</div>
+        </div>
+      </a>
+      <a href="device-control.html" class="device-card">
+        <div class="card">
+          <div class="card-title"><span class="status-circle status-circle-good"></span>Conveyor Belt 1</div>
+          <div>CVB-004-VIB</div>
+        </div>
+      </a>
+      <a href="device-control.html?device=debarker" class="device-card">
+        <div class="card">
+          <div class="card-title"><span class="status-circle status-circle-problem"></span>Hydraulic Press</div>
+          <div>HYP-005-VIB</div>
+        </div>
+      </a>
+      <a href="device-control.html" class="device-card">
+        <div class="card">
+          <div class="card-title"><span class="status-circle status-circle-good"></span>Grinder 1</div>
+          <div>GRN-006-VIB</div>
+        </div>
+      </a>
+      <a href="device-control.html?device=debarker" class="device-card">
+        <div class="card">
+          <div class="card-title"><span class="status-circle status-circle-problem"></span>Packaging Machine</div>
+          <div>PKM-007-VIB</div>
+        </div>
+      </a>
+      <a href="device-control.html" class="device-card">
+        <div class="card">
+          <div class="card-title"><span class="status-circle status-circle-good"></span>Sawmill Blade</div>
+          <div>SMB-008-VIB</div>
+        </div>
+      </a>
+      <a href="device-control.html?device=debarker" class="device-card">
+        <div class="card">
+          <div class="card-title"><span class="status-circle status-circle-problem"></span>Ventilation Fan</div>
+          <div>VTF-009-VIB</div>
+        </div>
+      </a>
+      <a href="device-control.html" class="device-card">
+        <div class="card">
+          <div class="card-title"><span class="status-circle status-circle-good"></span>Quality Control Robot</div>
+          <div>QCR-010-VIB</div>
+        </div>
+      </a>
     </div>
-    <!-- Empty State Example -->
-    <!-- 
-    <div class="mui--text-center" style="margin-top: 5em;">
-        <div class="mui--text-display1">No devices registered yet.</div>
-    </div>
-    -->
   </div>
-  <a href="device-discovery.html" class="mui-btn mui-btn--fab mui-btn--primary fab">
+  <a href="device-discovery.html" class="fab btn">
     <i class="material-icons">add</i>
   </a>
   <script>

@@ -4,52 +4,33 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
-  <script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
-  <link href="css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+  <link href="css/new-styles.css" rel="stylesheet" type="text/css" />
   <title>Login - Vibration Sensor App</title>
 </head>
 <body>
-  <div class="mui-container-fluid">
-    <div class="mui-row">
-      <div class="mui-col-xs-12 mui-col-sm-8 mui-col-sm-offset-2 mui-col-md-4 mui-col-md-offset-4">
-        <div class="mui-panel" id="login-panel">
-          <h1 class="mui--text-center">Welcome back!</h1>
-          <form class="mui-form" id="login-form">
-            <div class="mui-textfield">
-              <input type="email" required id="email-input">
-              <label>Email</label>
-            </div>
-            <div class="mui-textfield">
-              <input type="password" required id="password-input">
-              <label>Password</label>
-            </div>
-            <button type="submit" class="mui-btn mui-btn--raised mui-btn--primary full-width">Sign In</button>
-          </form>
-          <div class="mui--text-center" style="margin-top: 1em;">
-            <a href="register.html">Create an account</a>
-          </div>
-        </div>
+  <div class="container">
+    <div class="card" style="max-width: 400px; margin: 10vh auto;">
+      <div class="card-title">Login</div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required>
+      </div>
+      <button id="login-btn" class="btn full-width">Login</button>
+      <div style="text-align: center; margin-top: 16px;">
+        <a href="register.html">Don't have an account? Register</a>
       </div>
     </div>
   </div>
   <script>
-    // If user is already logged in, redirect to dashboard
-    if (localStorage.getItem('loggedIn') === 'true') {
+    document.getElementById('login-btn').addEventListener('click', function() {
+      // In a real app, you would validate the credentials here.
+      localStorage.setItem('loggedIn', 'true');
       window.location.href = 'dashboard.html';
-    }
-
-    document.getElementById('login-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      const email = document.getElementById('email-input').value;
-      const password = document.getElementById('password-input').value;
-
-      if (email === 'admin@example.com' && password === 'password') {
-        localStorage.setItem('loggedIn', 'true');
-        window.location.href = 'dashboard.html';
-      } else {
-        alert('Invalid credentials. Please try again.');
-      }
     });
   </script>
 </body>

@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
-  <script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="css/new-styles.css" rel="stylesheet" type="text/css" />
   <title>Device Control - Vibration Sensor App</title>
 </head>
 <body>
@@ -16,36 +15,90 @@
       window.location.href = 'index.html';
     }
   </script>
-  <header class="mui-appbar">
-    <div class="mui-container">
-      <table width="100%">
-        <tr class="mui--appbar-height">
-          <td class="mui--text-title">
-            <a href="dashboard.html" class="back-arrow"><i class="material-icons">arrow_back</i></a>
-            Device Control
-          </td>
-        </tr>
-      </table>
-    </div>
+  <header class="app-header">
+    <a href="dashboard.html" class="back-arrow"><i class="material-icons">arrow_back</i></a>
+    <div class="title">Device Control</div>
   </header>
-  <div class="mui-container" style="margin-top: 2em;">
-    <div class="mui-panel">
-      <div class="mui--text-headline">Device Information</div>
-      <div><strong>Device ID:</strong> HRS-001-VIB</div>
-      <div><strong>Status:</strong> <span class="status-connected">Connected</span></div>
+  <div class="container">
+    <div class="card">
+      <div class="card-title">Device Information</div>
+      <div id="device-info"></div>
     </div>
-    <div class="mui-panel">
-      <div class="mui--text-headline">Live Sensor Data</div>
-      <pre><code>{"x": 0.5, "y": -0.2, "z": 9.8}</code></pre>
+    <div id="anomaly-summary" class="card" style="display: none;">
+      <div class="card-title">Anomaly Summary</div>
+      <p>Number of anomaly readings: 3</p>
+      <p>Severity: High</p>
+      <p>Time of last anomaly: 2025-11-17 10:30 AM</p>
     </div>
-    <div class="mui-row" style="margin-top: 1em;">
-        <div class="mui-col-xs-6" style="padding-right: 8px;">
-            <button class="mui-btn mui-btn--raised mui-btn--primary full-width">Sync Time</button>
-        </div>
-        <div class="mui-col-xs-6" style="padding-left: 8px;">
-            <button class="mui-btn mui-btn--raised mui-btn--primary full-width">Upload Data</button>
+    <div class="card">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <button id="upload-btn" class="btn">Upload Data</button>
+            <div id="device-status"></div>
         </div>
     </div>
   </div>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const device = urlParams.get('device');
+    const deviceInfo = document.getElementById('device-info');
+    const anomalySummary = document.getElementById('anomaly-summary');
+    const deviceStatus = document.getElementById('device-status');
+    const uploadBtn = document.getElementById('upload-btn');
+
+    // Simulate being in range of some devices
+    const inRangeDevices = ['debarker', 'chipper'];
+
+    if (inRangeDevices.includes(device)) {
+        deviceStatus.innerHTML = '<span class="status-good">In Range</span>';
+        uploadBtn.disabled = false;
+    } else {
+        deviceStatus.innerHTML = '<span class="status-problem">Out of Range</span>';
+        uploadBtn.disabled = true;
+    }
+
+    if (device === 'debarker') {
+      deviceInfo.innerHTML = `
+        <div><strong>Device ID:</strong> DBI-002-VIB</div>
+        <div><strong>Status:</strong> <span class="status-problem">Maintenance Recommended</span></div>
+        <div><strong>Battery:</strong> <span class="status-problem">Replace</span></div>
+      `;
+      anomalySummary.style.display = 'block';
+    } else if (device === 'chipper') {
+        deviceInfo.innerHTML = `
+        <div><strong>Device ID:</strong> CHP-003-VIB</div>
+        <div><strong>Status:</strong> <span class="status-good">Good</span></div>
+        <div><strong>Battery:</strong> <span class="status-good">Good</span></div>
+      `;
+    }
+    else {
+      deviceInfo.innerHTML = `
+        <div><strong>Device ID:</strong> HRS-001-VIB</div>
+        <div><strong>Status:</strong> <span class="status-good">Good</span></div>
+        <div><strong>Battery:</strong> <span class="status-good">Good</span></div>
+      `;
+    }
+
+    uploadBtn.addEventListener('click', function() {
+        uploadBtn.disabled = true;
+        uploadBtn.textContent = 'Uploading...';
+        let width = 0;
+        const interval = setInterval(function() {
+            width += 10;
+            uploadBtn.style.background = `linear-gradient(to right, #1976d2 ${width}%, #ccc ${width}%)`;
+            if (width >= 100) {
+                clearInterval(interval);
+                setTimeout(function() {
+                    uploadBtn.textContent = 'Success';
+                    uploadBtn.style.background = '#4CAF50';
+                    setTimeout(function() {
+                        uploadBtn.textContent = 'Upload Data';
+                        uploadBtn.style.background = '#1976d2';
+                        uploadBtn.disabled = false;
+                    }, 2000);
+                }, 500);
+            }
+        }, 100);
+    });
+  </script>
 </body>
 </html>

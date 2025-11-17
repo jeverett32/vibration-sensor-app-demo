@@ -4,34 +4,38 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
-  <script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
-  <link href="css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+  <link href="css/new-styles.css" rel="stylesheet" type="text/css" />
   <title>Register - Vibration Sensor App</title>
 </head>
 <body>
-  <div class="mui-container-fluid">
-    <div class="mui-row">
-      <div class="mui-col-xs-12 mui-col-sm-8 mui-col-sm-offset-2 mui-col-md-4 mui-col-md-offset-4">
-        <div class="mui-panel" id="register-panel">
-          <h1 class="mui--text-center">Create your account</h1>
-          <form class="mui-form">
-            <div class="mui-textfield">
-              <input type="email" required>
-              <label>Email</label>
-            </div>
-            <div class="mui-textfield">
-              <input type="password" required>
-              <label>Password</label>
-            </div>
-            <a href="dashboard.html" class="mui-btn mui-btn--raised mui-btn--primary full-width">Register</a>
-          </form>
-          <div class="mui--text-center" style="margin-top: 1em;">
-            <a href="index.html">Already have an account? Login here</a>
-          </div>
-        </div>
+  <div class="container">
+    <div class="card" style="max-width: 400px; margin: 10vh auto;">
+      <div class="card-title">Register</div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required>
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" required>
+      </div>
+      <button id="register-btn" class="btn full-width">Register</button>
+      <div style="text-align: center; margin-top: 16px;">
+        <a href="index.html">Already have an account? Login</a>
       </div>
     </div>
   </div>
+  <script>
+    document.getElementById('register-btn').addEventListener('click', function() {
+      // In a real app, you would validate the input and create a new user here.
+      localStorage.setItem('loggedIn', 'true');
+      window.location.href = 'dashboard.html';
+    });
+  </script>
 </body>
 </html>

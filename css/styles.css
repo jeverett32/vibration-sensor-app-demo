@@ -68,3 +68,28 @@ body {
     color: green;
     font-weight: bold;
 }
+
+.status-good {
+    color: green;
+}
+
+.status-problem {
+    color: red;
+}
+
+.status-circle {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.status-circle-good {
+    background-color: green;
+}
+
+.status-circle-problem {
+    background-color: red;
+}
+
